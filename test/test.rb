@@ -1,6 +1,6 @@
 require 'rubygems'
 require 'sinatra'
-require File.join(File.dirname(__FILE__), '../lib/fancyviews')
+require File.dirname(__FILE__) + '/../lib/fancyviews'
 
 get('/') { page :home }
 
@@ -12,9 +12,9 @@ __END__
   %head
     %title FancyTest
     = styles
-    = script
   %body
     = yield
+    = script
 
 @@home
 :styles
