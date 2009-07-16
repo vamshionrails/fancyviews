@@ -56,7 +56,7 @@ module Sinatra
       include Haml::Filters::Base
 
       def compile(precompiler, text)
-        precompiler.send :push_silent, %(include_styles(view_name, #{text.inspect}))
+        precompiler.send :push_silent, %(include_style(view_name, #{text.inspect}))
       end
     end
     Haml::Filters.defined['styles'] = StyleFilter
@@ -65,12 +65,12 @@ module Sinatra
       include Haml::Filters::Base
 
       def compile(precompiler, text)
-        precompiler.send :push_silent, %(include_scripts(view_name, #{text.inspect}))
+        precompiler.send :push_silent, %(include_script(view_name, #{text.inspect}))
       end
     end
     Haml::Filters.defined['script'] = ScriptFilter
     
-    def include_styles(name, sass)
+    def include_style(name, sass)
       included_styles << [name, sass] unless included_styles.detect { |s| s == [name, sass] }
     end
 
@@ -78,7 +78,7 @@ module Sinatra
       @included_styles ||= []
     end
     
-    def include_scripts(name, js)
+    def include_script(name, js)
       included_scripts << [name, js] unless included_scripts.detect { |s| s == [name, js] }
     end
 
