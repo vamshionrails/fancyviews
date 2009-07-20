@@ -1,5 +1,6 @@
 Gem::Specification.new do |s|
   s.name     = "fancyviews"
+  s.rubyforge_project = 'fancyviews'
   s.version  = "0.5"
   s.summary  = "Fancy Views"
   s.description  = "Fancy Views"

@@ -5,7 +5,7 @@ task :default => :test
 desc "Run tests"
 task :test do
   dir = File.dirname(__FILE__)
-  system "cd #{dir} && ruby test/test.rb -p 2222 "
+  system "cd #{dir} && ruby test/test.rb -p 2222"
 end
 
 begin
