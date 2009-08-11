@@ -1,6 +1,8 @@
 require 'rubygems'
 require 'sinatra'
-require File.dirname(__FILE__) + '/../lib/fancyviews'
+require File.dirname(__FILE__) + '/../lib/sinatra/fancyviews'
+
+set :haml, :format => :html5
 
 get('/') { page :home }
 
@@ -8,32 +10,39 @@ __END__
 
 @@layout
 !!!
-%html
-  %head
-    %title FancyTest
-    = styles
-  %body
-    = yield
-    = script
+%head
+  %title FancyTest
+  = styles
+%body
+  = yield
+  = scripts
 
 @@home
-:styles
+:style
   #fancydiv
-    :background red
-    :color white
+    :border 10px solid goldenrod
+    :position fixed
+    :top 20%
+    :left 50%
+    :width 600px
+    :margin-left -300px
+    :cursor pointer
 
-:script
-  alert('hello');
-
-#fancydiv red
-= view :some_partial
+#fancydiv= view :some_partial
+  
 
 @@some_partial
-:styles
-  #partial
-    :background blue
+:style
+  #fancy
+    :font-family Helvetica
+    :font-size 200px
+    :font-weight bold
+    :color black
+    :margin 0
+    :padding 10px
+    :letter-spacing -4px
 
 :script
-  alert('partial')
+  document.getElementById('fancy').onclick = function() { alert('Fancy click') } 
 
-#partial this is a partial
+%h1#fancy Oooh! Fancy

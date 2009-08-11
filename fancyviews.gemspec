@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name     = "fancyviews"
   s.rubyforge_project = 'fancyviews'
-  s.version  = "0.5"
+  s.version  = "1.0"
   s.summary  = "Fancy Views"
   s.description  = "Fancy Views"
   s.email    = "myles@myles.id.au"
@@ -15,4 +15,5 @@ lib/sinatra/fancyviews.rb
 test/test.rb
 ]
   s.add_dependency("sinatra", [">= 0.9.1.1"])
+  s.add_dependency("haml", [">= 2.2"])
 end
