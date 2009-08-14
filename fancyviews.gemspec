@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name     = "fancyviews"
   s.rubyforge_project = 'fancyviews'
-  s.version  = "1.0"
+  s.version  = "1.1"
   s.summary  = "Fancy Views"
   s.description  = "Fancy Views"
   s.email    = "myles@myles.id.au"
