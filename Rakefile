@@ -1,5 +1,3 @@
-gem "sr-mg", "0.0.2"
-
 task :default => :test
 
 desc "Run example test app"
@@ -9,6 +7,7 @@ task :test do
 end
 
 begin
+  gem "sr-mg", "0.0.2"
   require "mg"
   MG.new("fancyviews.gemspec")
 rescue LoadError
