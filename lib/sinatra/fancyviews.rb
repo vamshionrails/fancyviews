@@ -78,16 +78,31 @@ module Sinatra
         eng = Sass::Engine.new(imported + "\n" + sass, :attribute_syntax => :normal)
         "\n/* -- #{name} -- */\n" + eng.render
       end.join
-      
-      capture_haml { haml_tag(:style, rendered_styles) }.strip
+
+      style_tag(rendered_styles, options[:media])
     end
-    
+
+    def style_tag(styles, media=nil)
+      capture_haml do
+        haml_tag(:style, styles, :type => ("text/css" if haml_format != :html5), :media => media)
+      end.strip
+    end
+
     # renders all the scripts captured by the :script filter
     def scripts
-      scripts = fancyviews.included_scripts.map do |name, js|
+      script_tag(fancyviews.included_scripts.map do |name, js|
         "\n/* -- #{name} -- */\n" + js
-      end.join
-      capture_haml { haml_tag(:script, scripts) }.strip
+      end.join)
+    end
+    
+    def script_tag(scripts)
+      capture_haml do
+        haml_tag(:script, scripts, :type => ("text/javascript" if haml_format != :html5))
+      end.strip
+    end
+
+    def haml_format
+      (options.haml && options.haml[:format]) || :xhtml
     end
     
     def fancyviews
