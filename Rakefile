@@ -1,9 +1,11 @@
 task :default => :test
 
-desc "Run example test app"
-task :test do
-  dir = File.dirname(__FILE__)
-  system "cd #{dir} && ruby test/test.rb -p 2222"
+%w(html4 html5).each do |version|
+  desc "Run example test app for #{version}"
+  task "test_#{version}" do
+    dir = File.dirname(__FILE__)
+    system "cd #{dir} && ruby test/#{version}.rb -p 2222"
+  end
 end
 
 begin
