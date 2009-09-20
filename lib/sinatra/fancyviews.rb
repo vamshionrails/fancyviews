@@ -75,7 +75,9 @@ module Sinatra
 
       rendered_styles = fancyviews.included_styles.map do |name, sass| 
         # would be nice if construction took an :offest to go along with the :filename
-        eng = Sass::Engine.new(imported + "\n" + sass, :attribute_syntax => :normal)
+        eng = Sass::Engine.new(imported + "\n" + sass,
+                               :attribute_syntax => :normal,
+                               :load_paths => [self.options.views])
         "\n/* -- #{name} -- */\n" + eng.render
       end.join
 
