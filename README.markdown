@@ -43,3 +43,7 @@ The haml will be rendered and included, just like normal partial rendering, but 
 
 For syntax highlighting in textmate, use this haml bundle: http://github.com/quackingduck/ruby-haml.tmbundle/tree/master and for sass use this one:
 http://github.com/quackingduck/ruby-sass-tmbundle/tree/master
+
+The `style` method can also import other sass files present in the views directory:
+
+    = styles(:import => :base)
