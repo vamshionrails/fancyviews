@@ -70,12 +70,13 @@ module Sinatra
     
     # renders all the styles captured by the :style filter
     def styles(options = {})
-      imported = options.has_key?(:import) ?
-        File.read("#{self.options.views}/#{options[:import]}.sass") : ''
+      imported = if options[:import]
+        [*options[:import]].map { |name| File.read("#{self.options.views}/#{name}.sass") }.join("\n")
+      end
 
       rendered_styles = fancyviews.included_styles.map do |name, sass| 
         # would be nice if construction took an :offest to go along with the :filename
-        eng = Sass::Engine.new(imported + "\n" + sass,
+        eng = Sass::Engine.new((imported || '') + "\n" + sass,
                                :attribute_syntax => :normal,
                                :load_paths => [self.options.views])
         "\n/* -- #{name} -- */\n" + eng.render
